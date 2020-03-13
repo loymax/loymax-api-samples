@@ -1,7 +1,7 @@
-# Примеры использования API системы
+# System API examples
 
-Требования:
+Requirements:
 Visual studio 2019
 
-Перед сборкой прописать nuget сервер: 
+Before building, insert the nuget server:
 https://nuget.loymax.net/nuget
