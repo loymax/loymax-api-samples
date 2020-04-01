@@ -14,6 +14,7 @@ namespace Loymax.Api.Sample
             var goodsGroup = await client.GoodsGroup_GetGoodsGroupsAsync(filter_name: "Товары"); // Находим группу товаров с именем "Товары"
 
             var offerBuilder = OfferImportBuilder.Create("Sample3. Фиксированная цена на единицу товара.") // Установливаем название акции
+                .WithDescription("Несколько цепочек с заданным фиксированном значением.") // Добавляем описание для акции
                 .WithPartner(partnerId) // Указываем id партнёра
                 .WithState(OfferWorkingState.Running) // Акция будет сразу запущена
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
@@ -51,8 +52,6 @@ namespace Loymax.Api.Sample
                     value: 250.0); // Устанавливаем размер скидки
 
             var offer = offerBuilder.Build();
-            offer.Offers[0].Description =
-                "Несколько цепочек с заданным фиксированном значением."; // Добавляем описание для акции
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Импортируем акцию в систему
             Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));

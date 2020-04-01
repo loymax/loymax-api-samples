@@ -17,6 +17,7 @@ namespace Loymax.Api.Sample
 
             var offer = OfferImportBuilder
                 .Create("Sample5. Спец.цена при покупке трех единиц товара") // Установливаем название акции
+                .WithDescription("При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N.") // Добавляем описание для акции
                 .WithPartner(partnerId) // Указываем id партнёра
                 .WithState(OfferWorkingState.Running) // Акция будет сразу запущена
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
@@ -34,9 +35,6 @@ namespace Loymax.Api.Sample
                         .PricePerUnit, // Задаем способ расчета: Фиксированная цена на единицу товара
                     value: 100.0) // Устанавливаем размер скидки
                 .Build();
-
-            offer.Offers[0].Description =
-                "При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N."; // Добавляем описание для акции
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Импортируем акцию в систему
             Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));

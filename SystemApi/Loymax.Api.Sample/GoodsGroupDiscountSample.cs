@@ -14,6 +14,7 @@ namespace Loymax.Api.Sample
             var goodsGroup = await client.GoodsGroup_GetGoodsGroupsAsync(filter_name: "Товары"); // Находим группу товаров с именем "Товары"
 
             var offer = OfferImportBuilder.Create("Sample1. Скидка на группу товаров.") // Установливаем название акции
+                .WithDescription("Скидка 10% на группу товаров с исключающим набором.") // Добавляем описание для акции
                 .WithPartner(partnerId) // Указываем id партнёра
                 .WithState(OfferWorkingState.Running) // Акция будет сразу запущена
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
@@ -27,9 +28,6 @@ namespace Loymax.Api.Sample
                     value: 10.0, // Устанавливаем размер скидки
                     calculationExclusionTypes: new List<CalculationExclusionDiscountType> { CalculationExclusionDiscountType.Discount }) // Исключаем из расчета сумму: Прямая скидка
                 .Build();
-
-            offer.Offers[0].Description =
-                "Скидка 10% на группу товаров с исключающим набором."; // Добавляем описание для акции
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Импортируем акцию в систему
             Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));

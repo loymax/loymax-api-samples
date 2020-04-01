@@ -15,6 +15,7 @@ namespace Loymax.Api.Sample
 
             var offer = OfferImportBuilder.Create("Sapmle4. N+M") // Установливаем название акции
                 .WithPartner(partnerId) // Указываем id партнёра
+                .WithDescription("При покупке 5ти товаров, 6ой в подарок.") // Добавляем описание для акции
                 .WithState(OfferWorkingState.Running) // Акция будет сразу запущена
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
                 .WithPriority(35) // Устанавливаем приоритет акции
@@ -44,9 +45,6 @@ namespace Loymax.Api.Sample
                     dicsountType: ActionDiscountType.Percent, // Задаем способ расчета: Процент
                     value: 100) // Устанавливаем размер скидки
                 .Build();
-
-            offer.Offers[0].Description =
-                "При покупке 5ти товаров, 6ой в подарок."; // Добавляем описание для акции
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Импортируем акцию в систему
             Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));

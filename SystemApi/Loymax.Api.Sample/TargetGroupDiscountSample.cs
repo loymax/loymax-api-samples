@@ -11,6 +11,7 @@ namespace Loymax.Api.Sample
         public static async Task ImportOfferAsync(Client client, string partnerId) 
         { 
             var offer = OfferImportBuilder.Create("Sample2. Скидка для ЦА") // Установливаем название акции
+                .WithDescription("Скидка для ЦА, в определенном магазине, на конечный срок действия.") // Добавляем описание для акции
                 .WithPartner(partnerId) // Указываем id партнёра
                 .WithState(OfferWorkingState.Running) // Акция будет сразу запущена
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
@@ -24,9 +25,6 @@ namespace Loymax.Api.Sample
                     value: 15.0, // Устанавливаем размер скидки
                     calculationExclusionTypes: new List<CalculationExclusionDiscountType> { CalculationExclusionDiscountType.Discount }) // Исключаем из расчета сумму: Прямая скидка
                 .Build();
-
-            offer.Offers[0].Description =
-            "Скидка для ЦА, в определенном магазине, на конечный срок действия."; // Добавляем описание для акции
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Импортируем акцию в систему
             Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
