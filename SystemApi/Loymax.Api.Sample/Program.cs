@@ -12,7 +12,7 @@ namespace Loymax.Api.Sample
                 BaseUrl = "https://dev.loymax.tech/systemapi/"
             };
 
-            // учётные данные запросите у специалистов Loymax
+            // ask Loymax specialists for credentials
             await client.Authorization("login-here", "password-here");
 
             var partnerId = "9957c76a-fe1a-499e-d5ca-1ab605a6a166";
