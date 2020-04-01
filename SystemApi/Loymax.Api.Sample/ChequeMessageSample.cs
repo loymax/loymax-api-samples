@@ -17,7 +17,7 @@ namespace Loymax.Api.Sample
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
                 .WithPriority(45) // Устанавливаем приоритет акции
                 .IsSum() // Акция суммируемая
-                .WithTargetGroup("1") // Задаем целевую аудиторию
+                .WithTargetGroup("1") // Задаем идентификатор целевой аудитории, которая должна быть предварительно создана в разделе "Целевые аудитории"
                 .AddChain<PurchaseCalculateEventDto>() // Добавляем цепочку для обработки события расчёта скидки
                 .WithChequeMessage("С любовью. ваш МегаМакс") // Устанавливаем сообщение на чек
                 .Build();

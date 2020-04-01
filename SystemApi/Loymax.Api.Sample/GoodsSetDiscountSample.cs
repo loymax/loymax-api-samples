@@ -11,7 +11,7 @@ namespace Loymax.Api.Sample
     {
         public static async Task ImportOfferAsync(Client client, string partnerId)
         {
-            var goodsGroup = await client.GoodsGroup_GetGoodsGroupsAsync(filter_name: "Товары"); // Находим группу товаров с именем "Товары"
+            var goodsGroup = await client.GoodsGroup_GetGoodsGroupsAsync(filter_name: "Товары"); // Находим группу товаров с именем "Товары", которая должна быть предварительно создана в разделе "Группы товаров"
 
             var offer = OfferImportBuilder.Create("Sapmle4. N+M") // Установливаем название акции
                 .WithPartner(partnerId) // Указываем id партнёра

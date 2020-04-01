@@ -13,7 +13,7 @@ namespace Loymax.Api.Sample
         {
             var goodsGroup =
                 await client.GoodsGroup_GetGoodsGroupsAsync(
-                    filter_name: "Товары"); // Находим группу товаров с именем "Товары"
+                    filter_name: "Товары"); // Находим группу товаров с именем "Товары", которая должна быть предварительно создана в разделе "Группы товаров"
 
             var offer = OfferImportBuilder
                 .Create("Sample5. Спец.цена при покупке трех единиц товара") // Установливаем название акции
