@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using Loymax.SystemApi.SDK;
-using Newtonsoft.Json;
 
 namespace Loymax.Api.Sample
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var client = new Client()
             {
@@ -15,21 +13,30 @@ namespace Loymax.Api.Sample
             };
 
             // ask Loymax specialists for credentials
-            client.Authorization("login-here", "password-here");
+            await client.Authorization("login-here", "password-here");
 
+            var partnerId = "9957c76a-fe1a-499e-d5ca-1ab605a6a166";
 
-            var offers = OfferImportBuilder.Create("SampleTitle") // Set offer name
-                .WithPartner("43168568-a7f8-4582-9d45-49857634251d") // Indicate partner id
-                .WithState(OfferWorkingState.Running) // The offer will be started immediately
-                .WithChanges(DateTime.Now, OfferChangesState.Approved) // It has been applied from the moment of loading
-                .WithExpirationDate(DateTime.Now.AddDays(1)) // Expires in 1 day
-                .AddChain<PurchaseCalculateEventDto>() // The chain for discount calculation event processing is added
-                .WithCardStateFilter(CardState.Activated) // for activated cards only
-                .WithDirectDiscount(ActionDiscountType.Percent, 0.1) // 10% direct discount
-                .Build();
+            // Скидка 10% 
+            await DiscountSample.ImportOfferAsync(client, partnerId);
 
-            var result = client.OfferImportExport_PostOffersAsync(offers).Result; // import the offer into the system
-            Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
+            // Скидка 10% на группу товаров с исключающим набором
+            await GoodsGroupDiscountSample.ImportOfferAsync(client, partnerId);
+
+            // Скидка для ЦА, в определенном магазине, на конечный срок действия
+            await TargetGroupDiscountSample.ImportOfferAsync(client, partnerId);
+
+            // Несколько цепочек с заданным фиксированном значением
+            await MultipleActionChainsSample.ImportOfferAsync(client, partnerId);
+
+            // При покупке 5ти товаров, 6ой в подарок
+            await GoodsSetDiscountSample.ImportOfferAsync(client, partnerId);
+
+            // При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N
+            await GoodsQuantityDiscountSample.ImportOfferAsync(client, partnerId);
+
+            // Суммируемая акция, предоставляющая определенные сообщения для конкретной ЦА
+            await ChequeMessageSample.ImportOfferAsync(client, partnerId);
         }
     }
 }

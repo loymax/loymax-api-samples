@@ -43,15 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChequeMessageSample.cs" />
+    <Compile Include="DiscountSample.cs" />
+    <Compile Include="GoodsGroupDiscountSample.cs" />
+    <Compile Include="GoodsQuantityDiscountSample.cs" />
+    <Compile Include="GoodsSetDiscountSample.cs" />
+    <Compile Include="MultipleActionChainsSample.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TargetGroupDiscountSample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Loymax.SystemApi.SDK">
-      <Version>2020.2.0.45722-master-sdk</Version>
+      <Version>2020.2.0.51153-master</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
