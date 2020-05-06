@@ -13,30 +13,30 @@ namespace Loymax.Api.Sample
         {
             var goodsGroup =
                 await client.GoodsGroup_GetGoodsGroupsAsync(
-                    filter_name: "Товары"); // Находим группу товаров с именем "Товары", которая должна быть предварительно создана в разделе "Группы товаров"
+                    filter_name: "Товары"); // Find a product group with the Products name, which must be previously created in the Product groups section
 
             var offer = OfferImportBuilder
-                .Create("Sample5. Спец.цена при покупке трех единиц товара") // Установливаем название акции
-                .WithDescription("При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N.") // Добавляем описание для акции
-                .WithPartner(partnerId) // Указываем id партнёра
-                .WithState(OfferWorkingState.Running) // Акция будет сразу запущена
-                .WithChanges(DateTime.Now, OfferChangesState.Approved) // Применяется с установленной даты
-                .WithPriority(40) // Устанавливаем приоритет акции
-                .AddChain<PurchaseCalculateEventDto>() // Добавляем цепочку для обработки события расчёта скидки
-                .WithChequePositionGoodsFilter( // Устанавливаем фильтр "Товар"
+                .Create("Sample5. Спец.цена при покупке трех единиц товара") // Set the name of the offer
+                .WithDescription("При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N.") // Add a description for the offer
+                .WithPartner(partnerId) // Specify Partner's ID
+                .WithState(OfferWorkingState.Running) // The offer will be run immediately
+                .WithChanges(DateTime.Now, OfferChangesState.Approved) // Applied from specified date
+                .WithPriority(40) // Set the priority for the offer
+                .AddChain<PurchaseCalculateEventDto>() // Add a chain to process discount calculation event
+                .WithChequePositionGoodsFilter( // Set the Product filter
                     type: ChequeGoodsFilterType
-                        .GoodsQuantity, // Устанавливаем дополнительное условие, при котором будет срабатывать фильтр: Количество
+                        .GoodsQuantity, // Set an additional condition under which the filter will trigger: Quantity
                     goodsGroupsIds: new List<Guid>
-                        {goodsGroup.Data.First().ExternalId.Value}, // Задаем найденную ранее группу товаров
-                    firstValue: 3.0, // Фильтр сработает только в том случае, если количество единиц товара в чеке равно 3.0
+                        {goodsGroup.Data.First().ExternalId.Value}, // Set the product group found earlier
+                    firstValue: 3.0, // The filter will only trigger if the number of units in the cheque is 3.0
                     @operator: ComparisonOperator.Equals)
-                .WithDirectDiscount( // Устанавливаем действие "Прямая скидка"
+                .WithDirectDiscount( // Set the Direct discount action
                     dicsountType: ActionDiscountType
-                        .PricePerUnit, // Задаем способ расчета: Фиксированная цена на единицу товара
-                    value: 100.0) // Устанавливаем размер скидки
+                        .PricePerUnit, // Set the calculation method: Fixed unit price
+                    value: 100.0) // Set the discount amount
                 .Build();
 
-            var result = await client.OfferImportExport_PostOffersAsync(offer); // Импортируем акцию в систему
+            var result = await client.OfferImportExport_PostOffersAsync(offer); // Import the offer into the system
             Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
         }
     }
