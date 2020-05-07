@@ -25,7 +25,7 @@ namespace Loymax.Api.Sample
                     {
                             new GoodsSetItemDto // Create a new set
                             {
-                                GoodsGroup = new GoodsGroupExDto // The item source for the set is the product group found.
+                                GoodsGroup = new GoodsGroupExDto // The item source for the set is the product group that is found.
                                 {
                                     Id = goodsGroup.Data.First().ExternalId.Value.ToString(), // Set the product group ID 
                                 },
