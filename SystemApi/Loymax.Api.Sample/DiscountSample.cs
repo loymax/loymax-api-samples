@@ -10,8 +10,8 @@ namespace Loymax.Api.Sample
         public static async Task ImportOfferAsync(Client client, string partnerId)
         {
             var offer = OfferImportBuilder.Create("SampleTitle")  // Set offer name
-                .WithPartner(partnerId) // Indicate partner id
-                .WithState(OfferWorkingState.Running) // The offer will be started immediately
+                .WithPartner(partnerId) // Indicate partner's ID
+                .WithState(OfferWorkingState.Running) // The offer will be run immediately
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // It has been applied from the moment of loading
                 .WithExpirationDate(DateTime.Now.AddDays(1)) // Expires in 1 day
                 .AddChain<PurchaseCalculateEventDto>() // The chain for discount calculation event processing is added
