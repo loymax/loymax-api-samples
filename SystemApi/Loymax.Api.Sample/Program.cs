@@ -17,25 +17,25 @@ namespace Loymax.Api.Sample
 
             var partnerId = "9957c76a-fe1a-499e-d5ca-1ab605a6a166";
 
-            // Скидка 10% 
+            // 10% discount
             await DiscountSample.ImportOfferAsync(client, partnerId);
 
-            // Скидка 10% на группу товаров с исключающим набором
+            // 10% discount on product group with excluding set
             await GoodsGroupDiscountSample.ImportOfferAsync(client, partnerId);
 
-            // Скидка для ЦА, в определенном магазине, на конечный срок действия
+            // Discount for target audience in a specific point of sale for the expiration date
             await TargetGroupDiscountSample.ImportOfferAsync(client, partnerId);
 
-            // Несколько цепочек с заданным фиксированном значением
+            // Several chains with a given fixed value
             await MultipleActionChainsSample.ImportOfferAsync(client, partnerId);
 
-            // При покупке 5ти товаров, 6ой в подарок
+            // When buying 5 products, 6th as a gift
             await GoodsSetDiscountSample.ImportOfferAsync(client, partnerId);
 
-            // При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N
+            // When purchasing at the price of three units of a promotional product within one cheque, the Member purchases these three products at a fixed price N
             await GoodsQuantityDiscountSample.ImportOfferAsync(client, partnerId);
 
-            // Суммируемая акция, предоставляющая определенные сообщения для конкретной ЦА
+            // Summable offer providing specific messages for a specific target audience
             await ChequeMessageSample.ImportOfferAsync(client, partnerId);
         }
     }
