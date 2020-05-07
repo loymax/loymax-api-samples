@@ -26,7 +26,7 @@ namespace Loymax.Api.Sample
                 .WithDirectDiscount( // Set the Direct discount action
                     dicsountType: ActionDiscountType.Percent, // Set the calculation method: Percentage
                     value: 10.0, // Set the discount amount
-                    calculationExclusionTypes: new List<CalculationExclusionDiscountType> { CalculationExclusionDiscountType.Discount }) // Exclude from the calculation the amount: Direct discount
+                    calculationExclusionTypes: new List<CalculationExclusionDiscountType> { CalculationExclusionDiscountType.Discount }) // Exclude the amount from the calculation: Direct discount
                 .Build();
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Import the offer into the system
