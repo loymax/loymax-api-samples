@@ -13,7 +13,7 @@ namespace Loymax.Api.Sample
                 .WithPartner(partnerId) // Indicate partner's ID
                 .WithState(OfferWorkingState.Running) // The offer will be run immediately
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // It has been applied from the moment of loading
-                .WithExpirationDate(DateTime.Now.AddDays(1)) // Expires in 1 day
+                .WithExpirationDate(DateTime.Now.AddDays(1)) // Expires after 1 day
                 .AddChain<PurchaseCalculateEventDto>() // The chain for discount calculation event processing is added
                 .WithCardStateFilter(CardState.Activated) // for activated cards only
                 .WithDirectDiscount(ActionDiscountType.Percent, 0.1) // 10% direct discount
