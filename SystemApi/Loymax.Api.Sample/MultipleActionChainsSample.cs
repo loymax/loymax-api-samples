@@ -11,10 +11,10 @@ namespace Loymax.Api.Sample
     {
         public static async Task ImportOfferAsync(Client client, string partnerId)
         {
-            var goodsGroup = await client.GoodsGroup_GetGoodsGroupsAsync(filter_name: "Товары"); // Find a product group with the Products name, which must be previously created in the Product groups section
+            var goodsGroup = await client.GoodsGroup_GetGoodsGroupsAsync(filter_name: "Products"); // Find a product group with the Products name, which must be previously created in the Product groups section
 
-            var offerBuilder = OfferImportBuilder.Create("Sample3. Фиксированная цена на единицу товара.") // Set the name of the offer
-                .WithDescription("Несколько цепочек с заданным фиксированном значением.") // Add a description for the offer
+            var offerBuilder = OfferImportBuilder.Create("Sample3. Fixed price for the product unit.") // Set the name of the offer
+                .WithDescription("Several chains with a given fixed value.") // Add a description for the offer
                 .WithPartner(partnerId) // Specify Partner's ID
                 .WithState(OfferWorkingState.Running) // The offer will be run immediately
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Applied from specified date
