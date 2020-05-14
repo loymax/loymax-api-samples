@@ -11,7 +11,7 @@ namespace Loymax.Api.Sample
         public static async Task ImportOfferAsync(Client client, string partnerId) 
         { 
             var offer = OfferImportBuilder.Create("Sample2. Скидка для ЦА") // Set the name of the offer
-                .WithDescription("Скидка для ЦА, в определенном магазине, на конечный срок действия.") // Add a description for the offer
+                .WithDescription("Discount for target audience in a specific POS on the expiration date.") // Add a description for the offer
                 .WithPartner(partnerId) // Specify Partner's ID
                 .WithState(OfferWorkingState.Running) // The offer will be run immediately
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Applied from specified date
