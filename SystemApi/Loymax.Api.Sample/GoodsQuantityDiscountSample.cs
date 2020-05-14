@@ -16,8 +16,8 @@ namespace Loymax.Api.Sample
                     filter_name: "Товары"); // Find a product group with the Products name, which must be previously created in the Product groups section
 
             var offer = OfferImportBuilder
-                .Create("Sample5. Спец.цена при покупке трех единиц товара") // Set the name of the offer
-                .WithDescription("При покупке по цене трех единиц акционного товара в рамках одного чека Участник приобретает эти три товара по фиксированной цене N.") // Add a description for the offer
+                .Create("Sample5. Special price when buying three units of product") // Set the name of the offer
+                .WithDescription("When buing at the price of three units of a promotional product within the framework of one cheque, the Member purchases these three items at a fixed price N.") // Add a description for the offer
                 .WithPartner(partnerId) // Specify Partner's ID
                 .WithState(OfferWorkingState.Running) // The offer will be run immediately
                 .WithChanges(DateTime.Now, OfferChangesState.Approved) // Applied from specified date
