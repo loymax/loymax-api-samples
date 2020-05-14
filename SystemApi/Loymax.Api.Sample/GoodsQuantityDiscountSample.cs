@@ -28,7 +28,7 @@ namespace Loymax.Api.Sample
                         .GoodsQuantity, // Set an additional condition under which the filter will trigger: Quantity
                     goodsGroupsIds: new List<Guid>
                         {goodsGroup.Data.First().ExternalId.Value}, // Set the product group found earlier
-                    firstValue: 3.0, // The filter will only trigger if the number of units in the cheque is 3.0
+                    firstValue: 3.0, // The filter only triggers if the number of units in the cheque is 3.0
                     @operator: ComparisonOperator.Equals)
                 .WithDirectDiscount( // Set the Direct discount action
                     dicsountType: ActionDiscountType
