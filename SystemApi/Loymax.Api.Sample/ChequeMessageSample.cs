@@ -19,7 +19,7 @@ namespace Loymax.Api.Sample
                 .IsSum() // Summable offer
                 .WithTargetGroup("1") // Set the identifier for target audience, which must be previously created in the Target audiences section
                 .AddChain<PurchaseCalculateEventDto>() // Add a chain to process discount calculation event
-                .WithChequeMessage("С любовью. ваш МегаМакс") // Set the message on the cheque
+                .WithChequeMessage("With love. your MegaMax") // Set the message on the cheque
                 .Build();
 
             var result = await client.OfferImportExport_PostOffersAsync(offer); // Import the offer into the system
